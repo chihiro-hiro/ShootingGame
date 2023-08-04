@@ -3,8 +3,11 @@
 // メイン関数
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lPcmdLine, _In_ int nCmdShow)
 {
-	// ウィンドウモードで起動
-	ChangeWindowMode(TRUE);
+	SetMainWindowText("ShootingGame");			// ウィンドウタイトルを設定
+
+	ChangeWindowMode(TRUE);						// ウインドウモードで起動
+
+	SetGraphMode(1280, 720, 32);				// ウインドウのサイズ
 
 	// DXライブラリの初期化
 	if (DxLib_Init() == -1)
@@ -30,6 +33,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		//{
 		//	break;
 		//}
+
+		ScreenFlip(); // 裏画面の内容を表画面に反映する
+
 	}
 
 	// DXライブラリ使用の終了処理
