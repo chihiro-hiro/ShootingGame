@@ -151,17 +151,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletsSpawner.cpp" />
+    <ClCompile Include="CharaBase.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameClearScene.cpp" />
     <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="InputControl.cpp" />
+    <ClCompile Include="InputRankingScene.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NwaySpawner.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RankingScene.cpp" />
     <ClCompile Include="SceneBase.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletsSpawner.h" />
+    <ClInclude Include="CharaBase.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Fps.h" />
+    <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameMainScene.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="InputControl.h" />
+    <ClInclude Include="InputRankingScene.h" />
+    <ClInclude Include="NwaySpawner.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RankingScene.h" />
     <ClInclude Include="SceneBase.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
