@@ -11,5 +11,5 @@ private:
 public:
 	BulletsSpawner();			// コンストラクタ
 	~BulletsSpawner();			// デストラクタ
-	virtual void Shoot();
+	virtual void Shoot();		// 引数にゲームメインシーンのポインタ
 };

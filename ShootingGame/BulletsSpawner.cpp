@@ -16,6 +16,7 @@ BulletsSpawner::~BulletsSpawner()
 
 }
 
+// 引数にゲームメインシーンのポインタ
 void BulletsSpawner::Shoot()
 {
 

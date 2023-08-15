@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include "common.h"
 #include "Fps.h"
 #include "InputControl.h"
 #include "SceneBase.h"
@@ -8,11 +9,11 @@
 // メイン関数
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lPcmdLine, _In_ int nCmdShow)
 {
-	SetMainWindowText("ShootingGame");			// ウィンドウタイトルを設定
+	SetMainWindowText("ShootingGame");						// ウィンドウタイトルを設定
 
-	ChangeWindowMode(TRUE);						// ウインドウモードで起動
+	ChangeWindowMode(TRUE);									// ウインドウモードで起動
 
-	SetGraphMode(1280, 720, 32);				// ウインドウのサイズ
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32);			// ウインドウのサイズ
 
 	// DXライブラリの初期化
 	if (DxLib_Init() == -1)

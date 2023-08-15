@@ -4,6 +4,12 @@
 // コンストラクタ
 Enemy::Enemy()
 {
+	speed = 5.0f;
+
+	location.x = 100.0f;
+	location.y = 200.0f;
+	radius = 20.0f;
+
 	hp = 3;
 	point = 10;
 	weapon = new NwaySpawner();
@@ -25,11 +31,16 @@ void Enemy::Update()
 // 描画処理
 void Enemy::Draw() const
 {
-	DrawCircle(100, 200, 20, 0x00ffff, TRUE);
+	DrawCircle((int)location.x, (int)location.y, (int)radius, 0x00ffff, TRUE);
 }
 
 // ダメージ処理
-void Enemy::Hit()
+void Enemy::Hit(int damage)
 {
+	hp -= damage;
 
+	if (hp <= 0)
+	{
+		hp = 0;
+	}
 }

@@ -27,7 +27,7 @@ void CharaBase::Draw() const
 }
 
 // ƒ_ƒ[ƒWˆ—
-void CharaBase::Hit()
+void CharaBase::Hit(int damage)
 {
 
 }
