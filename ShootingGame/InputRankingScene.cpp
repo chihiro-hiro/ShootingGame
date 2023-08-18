@@ -19,9 +19,9 @@ InputRankingScene::~InputRankingScene()
 AbstractScene* InputRankingScene::Update()
 {
 	// 決定ボタンが押された
-	return new RankingScene;
+	//return new RankingScene();
 
-	//return this;
+	return this;
 }
 
 // 描画処理
@@ -29,6 +29,6 @@ void InputRankingScene::Draw() const
 {
 	// デバッグ
 #if _DEBUG
-	DrawFormatString(0, 0, 0xffffff, "ランキング登録");
+	DrawFormatString(50, 0, 0xffffff, "ランキング登録");
 #endif	//_DEBUG
 }

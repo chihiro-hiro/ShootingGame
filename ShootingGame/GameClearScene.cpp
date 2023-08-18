@@ -22,16 +22,20 @@ AbstractScene* GameClearScene::Update()
 	// ランキング内だったら
 	//return new InputRankingScene();
 
-	// ボタンが押されたら
-	return new TitleScene();
+	// Aボタンでタイトルへ遷移
+	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
+	{
+		return new TitleScene();
+	}
 
-	//return this;
+	return this;
 }
 
 // 描画処理
 void GameClearScene::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(0, 0, 0xffffff, "ゲームクリア");
+	DrawFormatString(50, 0, 0xffff00, "ゲームクリア");
+	DrawFormatString(200, 0, 0xffffff, "A : タイトル");
 #endif	//_DEBUG
 }

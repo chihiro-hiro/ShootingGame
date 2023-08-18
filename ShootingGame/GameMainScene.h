@@ -5,13 +5,16 @@
 #include "Enemy.h"
 #include "Bullet.h"
 
+#define ENEMY_NUM
+#define BULLET_NUM	(10)
+
 class GameMainScene : public AbstractScene
 {
 private:
 	Player player;						// Playerのオブジェクト化
 	int life;							// 残機
 	Enemy* enemy;						// Enemyのポインタ配列
-	Bullet* bullet;						// Bulletのポインタ配列
+	Bullet* bullet[BULLET_NUM];			// Bulletのポインタ配列
 
 public:
 	GameMainScene();					// コンストラクタ

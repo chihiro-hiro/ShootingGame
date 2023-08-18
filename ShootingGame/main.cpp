@@ -25,13 +25,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// タイトル シーンオブジェクト作成
-	//SceneBase* sceneBase = new SceneBase((AbstractScene*) new TitleScene());#if _DEBUG
-
-	// デバッグ
-#if _DEBUG
-	// ゲームメインテスト用
-	SceneBase* sceneBase = new SceneBase((AbstractScene*) new GameMainScene());
-#endif	//_DEBUG
+	SceneBase* sceneBase = new SceneBase((AbstractScene*) new TitleScene());
 
 	Fps fps;
 	

@@ -8,12 +8,12 @@ Player::Player()
 {
 	speed = 5.0f;
 
-	location.x = 100.0f;
-	location.y = 100.0f;
+	location.x = 640.0f;
+	location.y = 550.0f;
 	radius = 20.0f;
 
 	score = 0;
-	weapon = new BulletsSpawner;
+	weapon = new BulletsSpawner();
 	
 	//デバッグ用
 	hp = 100000;
@@ -41,10 +41,12 @@ void Player::Update()
 // 描画処理
 void Player::Draw() const
 {
-	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xffffff, TRUE);
-	
-	//デバッグ用
+	// デバッグ
+#if _DEBUG
 	DrawFormatString(20, 20, 0xffffff, "hp = %d", hp);
+#endif	//_DEBUG
+
+	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xffffff, TRUE);
 }
 
 // ダメージ処理
