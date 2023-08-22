@@ -17,15 +17,18 @@ GameMainScene::GameMainScene()
 	{
 		bullet[i] = nullptr;
 	}
-
-	// デバッグ用
-	bullet[1] = new Bullet();
 }
 
 // デストラクタ
 GameMainScene::~GameMainScene()
 {
+	delete enemy;
+	//delete[] bullet;
 
+	//for (int i = 0; i < BULLET_NUM; i++)
+	//{
+	//	delete[i] bullet;
+	//}
 }
 
 // 更新処理
@@ -98,8 +101,6 @@ void GameMainScene::Draw() const
 			bullet[i]->Draw();
 		}
 	}
-
-	//bullet[1]->Draw();
 }
 
 // 当たり判定のチェック

@@ -10,7 +10,7 @@ Player::Player()
 
 	location.x = 640.0f;
 	location.y = 550.0f;
-	radius = 20.0f;
+	radius = 40.0f;
 
 	score = 0;
 	weapon = new BulletsSpawner();
@@ -36,6 +36,7 @@ void Player::Update()
 	//{
 	//	weapon->Shoot();
 	//}
+
 }
 
 // •`‰æˆ—
@@ -63,13 +64,11 @@ void Player::Move()
 	if (0.4f < InputControl::TipLeftLStick(STICKL_X))
 	{
 		// ‰E
-		//location.x += move_x;
 		location.x += speed;
 	}
 	else if (InputControl::TipLeftLStick(STICKL_X) < -0.4f)
 	{
 		// ¶
-		//location.x -= move_x;
 		location.x -= speed;
 	}
 
@@ -77,13 +76,11 @@ void Player::Move()
 	if (0.4f < InputControl::TipLeftLStick(STICKL_Y))
 	{	
 		// ã
-		//location.y -= move_y;
 		location.y -= speed;
 	}
 	else if (InputControl::TipLeftLStick(STICKL_Y) < -0.4f)
 	{
 		// ‰º
-		//location.y += move_y;
 		location.y += speed;
 	}
 

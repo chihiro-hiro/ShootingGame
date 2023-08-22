@@ -7,7 +7,7 @@ Bullet::Bullet()
 {
 	location.x = 200.0f;
 	location.y = 200.0f;
-	radius = 10.0f;
+	radius = 15.0f;
 
 	damage = 1;					// ダメージ量
 	speed = 2.0f;				// 速度
@@ -37,6 +37,7 @@ void Bullet::Update()
 void Bullet::Draw() const
 {
 	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xff0000, TRUE);
+	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xffffff, FALSE);
 }
 
 // ダメージの値を取得

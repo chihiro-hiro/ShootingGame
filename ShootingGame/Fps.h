@@ -36,6 +36,7 @@ public:
 	}
 	void Draw()
 	{
+		SetFontSize(10);
 		//fps•`‰æ
 		DrawFormatString(0, 0, GetColor(255, 255, 255), "%.1f", fps);
 	}

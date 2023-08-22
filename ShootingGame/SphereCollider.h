@@ -3,9 +3,6 @@
 // 当たり判定用のクラス
 class SphereCollider
 {
-private:
-	//float radius;
-
 public:
 	SphereCollider();			// コンストラクタ
 	~SphereCollider();			// デストラクタ
@@ -18,7 +15,6 @@ protected:
 		float y;
 	};
 
-	//float location;				// 中心座標　x,yが必要
 	Location location;			// 中心座標
 	float radius;				// 半径
 };

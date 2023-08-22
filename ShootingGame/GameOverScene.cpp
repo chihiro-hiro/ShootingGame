@@ -31,7 +31,13 @@ AbstractScene* GameOverScene::Update()
 void GameOverScene::Draw() const
 {
 #if _DEBUG
-	DrawFormatString(50, 0, 0xff0000, "ゲームオーバー");
-	DrawFormatString(200, 0, 0xffffff, "A : タイトル");
+	//DrawFormatString(50, 0, 0xff0000, "ゲームオーバー");
+	//DrawFormatString(200, 0, 0xffffff, "A : タイトル");
 #endif	//_DEBUG
+
+	SetFontSize(150);
+	DrawFormatString(320, 250, 0xff0000, "Game Over");
+	SetFontSize(30);
+	DrawFormatString(550, 600, 0xffffff, "A : タイトル");
+
 }

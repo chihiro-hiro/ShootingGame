@@ -8,7 +8,7 @@ Enemy::Enemy()
 
 	location.x = 100.0f;
 	location.y = 200.0f;
-	radius = 20.0f;
+	radius = 40.0f;
 
 	hp = 3;
 	point = 10;
