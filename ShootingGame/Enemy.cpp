@@ -5,6 +5,7 @@
 Enemy::Enemy()
 {
 	speed = 5.0f;
+	isEnemy = TRUE;
 
 	location.x = 100.0f;
 	location.y = 200.0f;
@@ -13,6 +14,7 @@ Enemy::Enemy()
 	hp = 3;
 	point = 10;
 	weapon = new NwaySpawner();
+	interval = 0;
 }
 
 // デストラクタ
@@ -26,11 +28,33 @@ void Enemy::Update(GameMainScene* gamemain)
 {
 	// 移動処理
 
+	//if (++interval >= 60)
+	//{
+	//	weapon->Shoot(gamemain, location.x, location.y, isEnemy);
+	//	interval = 0;
+	//}
+	
+	//if (GetRand(100) == 1)
+	//{
+	//	weapon->Shoot(gamemain, location.x, location.y, isEnemy);
+	//}
+
+	if (++interval >= 60 && GetRand(100) == 1)
+	{
+		weapon->Shoot(gamemain, location.x, location.y, isEnemy);
+		interval = 0;
+	}
 }
 
 // 描画処理
 void Enemy::Draw() const
-{
+{	
+	// デバッグ
+#if _DEBUG
+	DrawFormatString(120, 20, 0xff0000, "hp = %d", hp);
+	//DrawFormatString(100, 0, 0xff0000, "in = %d", interval);
+#endif	//_DEBUG
+
 	DrawCircle((int)location.x, (int)location.y, (int)radius, 0x00ffff, TRUE);
 }
 
@@ -43,4 +67,9 @@ void Enemy::Hit(int damage)
 	{
 		hp = 0;
 	}
+}
+
+int Enemy::GetHp()
+{
+	return hp;
 }

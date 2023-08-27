@@ -7,6 +7,7 @@
 Player::Player()
 {
 	speed = 5.0f;
+	isEnemy = FALSE;
 
 	location.x = 640.0f;
 	location.y = 550.0f;
@@ -34,7 +35,7 @@ void Player::Update(GameMainScene* gamemain)
 	// Aƒ{ƒ^ƒ“‚ÅUŒ‚
 	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
 	{
-	 	weapon->Shoot(gamemain,location.x,location.y,FALSE);
+		weapon->Shoot(gamemain, location.x, location.y, isEnemy);
 	}
 
 }

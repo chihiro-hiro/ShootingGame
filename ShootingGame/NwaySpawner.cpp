@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "NwaySpawner.h"
+#include "GameMainScene.h"
 
 // コンストラクタ
 NwaySpawner::NwaySpawner()
@@ -23,5 +24,5 @@ NwaySpawner::~NwaySpawner()
 // ダメージ処理
 void NwaySpawner::Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy)
 {
-
+	gamemain->SpawnBullet(x, y, is_enemy);
 }

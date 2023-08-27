@@ -3,7 +3,6 @@
 #include "InputControl.h"
 #include "Bullet.h"
 
-
 // コンストラクタ
 Bullet::Bullet(float x, float y, bool is_enemy)
 {
@@ -18,7 +17,7 @@ Bullet::Bullet(float x, float y, bool is_enemy)
 	angle = 0.0f;				// 角度
 	acceleration = 3.0f;		// 速度の変化量
 	angulVelocity = 3.0f;		// 角度の変化量
-	enemy = is_enemy;
+	isEnemy = is_enemy;
 	color = 0xff0000;
 }
 
@@ -31,7 +30,7 @@ Bullet::~Bullet()
 // 更新処理
 void Bullet::Update()
 {
-	if (enemy == TRUE)
+	if (isEnemy == TRUE)
 	{
 		location.y += speed;
 	}
@@ -57,11 +56,16 @@ int Bullet::GetDamage()
 
 bool Bullet::CheckDraw()
 {
-	// 画面外に行くと消す
+	// 画面外に行くと消す（上下）
 	if (location.y <= -radius || location.y >= SCREEN_HEIGHT - radius)
 	{
 		return true;
 	}
 
 	return false;
+}
+
+bool Bullet::CheckEnemyBullet()
+{
+	return isEnemy;
 }

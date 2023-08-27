@@ -8,6 +8,7 @@ private:
 	int hp;						// 体力
 	int point;					// スコアの加算量
 	NwaySpawner* weapon;		// BulletsSpawnerの子クラス
+	int interval;
 
 public:
 	Enemy();						// コンストラクタ
@@ -15,4 +16,5 @@ public:
 	void Update(GameMainScene* gamemain) override;			// 更新処理
 	void Draw() const override;		// 描画処理
 	void Hit(int damage) override;			// ダメージ処理
+	int GetHp();
 };

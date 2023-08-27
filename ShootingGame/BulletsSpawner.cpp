@@ -21,5 +21,4 @@ BulletsSpawner::~BulletsSpawner()
 void BulletsSpawner::Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy)
 {
 	gamemain->SpawnBullet(x, y, is_enemy);
-	//gamemain->;
 }

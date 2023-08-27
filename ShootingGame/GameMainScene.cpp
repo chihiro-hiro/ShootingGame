@@ -12,7 +12,13 @@ int color = 0xffffff;
 GameMainScene::GameMainScene()
 {
 	life = 3;				// 残機
-	enemy = new Enemy();
+	for (int i = 0; i < ENEMY_NUM; i++)
+	{
+		enemy[i] = nullptr;
+	}
+
+	enemy[1] = new Enemy();
+
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
 		bullet[i] = nullptr;
@@ -22,7 +28,7 @@ GameMainScene::GameMainScene()
 // デストラクタ
 GameMainScene::~GameMainScene()
 {
-	delete enemy;
+	//delete enemy;
 	//delete[] bullet;
 
 	//for (int i = 0; i < BULLET_NUM; i++)
@@ -36,6 +42,15 @@ AbstractScene* GameMainScene::Update()
 {
 	// プレイヤーの更新処理
 	player.Update(this);
+
+	// 敵の更新処理
+	for (int i = 0; i < ENEMY_NUM; i++)
+	{
+		if (enemy[i] != nullptr)
+		{
+			enemy[i]->Update(this);
+		}
+	}
 
 	// 弾の更新処理
 	for (int i = 0; i < BULLET_NUM; i++)
@@ -52,12 +67,7 @@ AbstractScene* GameMainScene::Update()
 	}
 
 	// 当たり判定のチェック
-	// HitCheck();
-
-	//if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
-	//{
-	//	SpawnBullet();
-	//}
+	HitCheck();
 
 	if (InputControl::OnButton(XINPUT_BUTTON_Y) == 1)
 	{
@@ -96,7 +106,15 @@ void GameMainScene::Draw() const
 	player.Draw();
 
 	// エネミーの描画処理
-	enemy->Draw();
+	for (int i = 0; i < ENEMY_NUM; i++)
+	{
+		if (enemy[i] != nullptr)
+		{
+			enemy[i]->Draw();
+		}
+	}
+
+	//enemy->Draw();
 
 	// 弾の描画処理
 	for (int i = 0; i < BULLET_NUM; i++)
@@ -116,7 +134,7 @@ void GameMainScene::HitCheck()
 		if (bullet[i] != nullptr)
 		{
 			// プレイヤーとの当たり判定
-			if (player.CheckCollision(bullet[i]) == true)
+			if (player.CheckCollision(bullet[i]) == true && bullet[i]->CheckEnemyBullet() == true)
 			{
 				color = 0xff0000;
 
@@ -126,26 +144,31 @@ void GameMainScene::HitCheck()
 				bullet[i] = nullptr;
 
 				life--;
+
+				break;
 			}
-			else if (player.CheckCollision(enemy) == true)
+
+			for (int j = 0; j < ENEMY_NUM; j++)
 			{
-				color = 0x00ffff;
+				if (enemy[j] != nullptr)
+				{
+					//敵との当たり判定
+					if (enemy[j]->CheckCollision(bullet[i]) == true && bullet[i]->CheckEnemyBullet() == false)
+					{
+						color = 0x0000ff;
+
+						// ダメージ処理
+						enemy[j]->Hit(bullet[i]->GetDamage());
+
+						bullet[i] = nullptr;
+
+						if (enemy[j]->GetHp() == 0)
+						{
+							enemy[j] = nullptr;
+						}
+					}
+				}
 			}
-			else
-			{
-				color = 0xffffff;
-			}
-
-			// 敵との当たり判定
-			//if (enemy->CheckCollision(bullet[i]) == true)
-			//{
-			//	color = 0x0000ff;
-
-			//	// ダメージ処理
-			//	enemy->Hit(bullet[i]->GetDamage());
-
-			//	//bullet = nullptr;
-			//}
 		}
 	}
 }

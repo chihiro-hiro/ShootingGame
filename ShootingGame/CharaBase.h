@@ -8,6 +8,7 @@ class CharaBase : public SphereCollider
 protected:
 	float speed;
 	int image;
+	bool isEnemy;
 
 public:
 	CharaBase();					// コンストラクタ

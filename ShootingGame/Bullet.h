@@ -9,7 +9,7 @@ private:
 	float angle;				// 角度
 	float acceleration;			// 速度の変化量
 	float angulVelocity;		// 角度の変化量
-	bool enemy;
+	bool isEnemy;
 	int color;
 
 public:
@@ -19,4 +19,5 @@ public:
 	void Draw() const;			// 描画処理
 	int GetDamage();			// ダメージの値を取得
 	bool CheckDraw();
+	bool CheckEnemyBullet();
 };
