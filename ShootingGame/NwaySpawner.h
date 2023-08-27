@@ -11,5 +11,5 @@ private:
 public:
 	NwaySpawner();			// コンストラクタ
 	~NwaySpawner();			// デストラクタ
-	void Shoot() override;
+	void Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy) override;
 };

@@ -23,5 +23,5 @@ public:
 	void Draw() const override;			// 描画処理
 
 	void HitCheck();					// 当たり判定のチェック
-	void SpawnBullet();					// 弾の配列に新しくデータを作成する
+	void SpawnBullet(float x, float y, bool is_enemy);					// 弾の配列に新しくデータを作成する
 };

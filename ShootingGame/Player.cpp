@@ -26,16 +26,16 @@ Player::~Player()
 }
 
 // 更新処理
-void Player::Update()
+void Player::Update(GameMainScene* gamemain)
 {
 	// 左スティックで移動
 	Move();
-
-	// 攻撃
-	//if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
-	//{
-	//	weapon->Shoot();
-	//}
+	
+	// Aボタンで攻撃
+	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
+	{
+	 	weapon->Shoot(gamemain,location.x,location.y,FALSE);
+	}
 
 }
 

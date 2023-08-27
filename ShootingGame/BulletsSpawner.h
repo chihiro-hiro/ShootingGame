@@ -1,8 +1,10 @@
 #pragma once
 
+class GameMainScene;
+
 class BulletsSpawner
 {
-private:
+protected:
 	float speed;				// 速度
 	float angle;				// 角度
 	float acceleration;			// 速度の変化量
@@ -11,5 +13,5 @@ private:
 public:
 	BulletsSpawner();			// コンストラクタ
 	~BulletsSpawner();			// デストラクタ
-	virtual void Shoot();		// 引数にゲームメインシーンのポインタ
+	virtual void Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy);		// 引数にゲームメインシーンのポインタ
 };

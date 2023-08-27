@@ -35,7 +35,7 @@ GameMainScene::~GameMainScene()
 AbstractScene* GameMainScene::Update()
 {
 	// プレイヤーの更新処理
-	player.Update();
+	player.Update(this);
 
 	// 弾の更新処理
 	for (int i = 0; i < BULLET_NUM; i++)
@@ -43,16 +43,21 @@ AbstractScene* GameMainScene::Update()
 		if (bullet[i] != nullptr)
 		{
 			bullet[i]->Update();
+
+			if (bullet[i]->CheckDraw() == true)
+			{
+				bullet[i] = nullptr;
+			}
 		}
 	}
 
 	// 当たり判定のチェック
-	HitCheck();
+	// HitCheck();
 
-	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
-	{
-		SpawnBullet();
-	}
+	//if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
+	//{
+	//	SpawnBullet();
+	//}
 
 	if (InputControl::OnButton(XINPUT_BUTTON_Y) == 1)
 	{
@@ -146,13 +151,13 @@ void GameMainScene::HitCheck()
 }
 
 // 弾の配列に新しくデータを作成する
-void GameMainScene::SpawnBullet()
+void GameMainScene::SpawnBullet(float x, float y, bool is_enemy)
 {
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
 		if (bullet[i] == nullptr)
 		{
-			bullet[i] = new Bullet();
+			bullet[i] = new Bullet(x, y, is_enemy);
 			break;
 		}
 	}

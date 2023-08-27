@@ -22,7 +22,7 @@ Enemy::~Enemy()
 }
 
 // XVˆ—
-void Enemy::Update()
+void Enemy::Update(GameMainScene* gamemain)
 {
 	// ˆÚ“®ˆ—
 

@@ -9,11 +9,14 @@ private:
 	float angle;				// 角度
 	float acceleration;			// 速度の変化量
 	float angulVelocity;		// 角度の変化量
+	bool enemy;
+	int color;
 
 public:
-	Bullet();					// コンストラクタ
+	Bullet(float x, float y, bool is_enemy);					// コンストラクタ
 	~Bullet();					// デストラクタ
 	void Update();				// 更新処理
 	void Draw() const;			// 描画処理
 	int GetDamage();			// ダメージの値を取得
+	bool CheckDraw();
 };

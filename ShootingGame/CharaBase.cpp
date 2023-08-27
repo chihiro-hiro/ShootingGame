@@ -15,7 +15,7 @@ CharaBase::~CharaBase()
 }
 
 // XVˆ—
-void CharaBase::Update()
+void CharaBase::Update(GameMainScene* gamemain)
 {
 
 }

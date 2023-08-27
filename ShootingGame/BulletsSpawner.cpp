@@ -1,5 +1,6 @@
 #include "DxLib.h"
 #include "BulletsSpawner.h"
+#include "GameMainScene.h"
 
 // コンストラクタ
 BulletsSpawner::BulletsSpawner()
@@ -17,7 +18,8 @@ BulletsSpawner::~BulletsSpawner()
 }
 
 // 引数にゲームメインシーンのポインタ
-void BulletsSpawner::Shoot()
+void BulletsSpawner::Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy)
 {
-
+	gamemain->SpawnBullet(x, y, is_enemy);
+	//gamemain->;
 }
