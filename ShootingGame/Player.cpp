@@ -58,6 +58,16 @@ void Player::Hit(int damage)
 	hp -= damage;
 }
 
+int Player::GetScore()const
+{
+	return score;
+}
+
+void Player::SetScore(int set_score)
+{
+	score += set_score;
+}
+
 // 移動処理（左スティック）
 void Player::Move()
 {
@@ -85,7 +95,7 @@ void Player::Move()
 		location.y += speed;
 	}
 
-	// 画面左右からはみ出さないようにする処理
+	// 左右の移動制御
 	if (location.x <= radius)
 	{
 		location.x = radius;
@@ -95,7 +105,7 @@ void Player::Move()
 		location.x = SCREEN_WIDTH - radius;
 	}
 
-	// 画面上下からはみ出さないようにする処理
+	// 上下の移動制御
 	if (location.y <= radius)
 	{
 		location.y = radius;

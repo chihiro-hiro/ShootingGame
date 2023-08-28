@@ -10,10 +10,10 @@ Bullet::Bullet(float x, float y, bool is_enemy)
 	location.y = y;
 	//location.x = 200.0f;
 	//location.y = 200.0f;
-	radius = 15.0f;
+	radius = 10.0f;
 
 	damage = 1;					// ダメージ量
-	speed = 2.0f;				// 速度
+	speed = 3.0f;				// 速度
 	angle = 0.0f;				// 角度
 	acceleration = 3.0f;		// 速度の変化量
 	angulVelocity = 3.0f;		// 角度の変化量
@@ -37,7 +37,7 @@ void Bullet::Update()
 	else
 	{
 		location.y -= speed;
-		color = 0x00ffff;
+		color = 0x0fffff;
 	}
 }
 
@@ -54,10 +54,10 @@ int Bullet::GetDamage()
 	return damage;
 }
 
-bool Bullet::CheckDraw()
+bool Bullet::CheckDelete()
 {
 	// 画面外に行くと消す（上下）
-	if (location.y <= -radius || location.y >= SCREEN_HEIGHT - radius)
+	if (location.y <= -radius || location.y >= SCREEN_HEIGHT + radius)
 	{
 		return true;
 	}

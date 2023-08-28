@@ -9,8 +9,8 @@ private:
 	float angle;				// 角度
 	float acceleration;			// 速度の変化量
 	float angulVelocity;		// 角度の変化量
-	bool isEnemy;
-	int color;
+	bool isEnemy;				// 誰の弾か
+	int color;					// 弾の色
 
 public:
 	Bullet(float x, float y, bool is_enemy);					// コンストラクタ
@@ -18,6 +18,6 @@ public:
 	void Update();				// 更新処理
 	void Draw() const;			// 描画処理
 	int GetDamage();			// ダメージの値を取得
-	bool CheckDraw();
-	bool CheckEnemyBullet();
+	bool CheckDelete();			// 弾が画面内にいるか
+	bool CheckEnemyBullet();	// 敵の弾かのチェック
 };

@@ -1,20 +1,25 @@
 #include "DxLib.h"
+#include "common.h"
 #include "Enemy.h"
 
 // コンストラクタ
-Enemy::Enemy()
+Enemy::Enemy(float x, float y)
 {
 	speed = 5.0f;
 	isEnemy = TRUE;
 
-	location.x = 100.0f;
-	location.y = 200.0f;
+	location.x = x;
+	location.y = y;
+	//location.x = 100.0f;
+	//location.y = 200.0f;
 	radius = 40.0f;
 
 	hp = 3;
 	point = 10;
 	weapon = new NwaySpawner();
 	interval = 0;
+	//shoudMove = FALSE;
+	shoudMoveRight = TRUE;
 }
 
 // デストラクタ
@@ -26,24 +31,49 @@ Enemy::~Enemy()
 // 更新処理
 void Enemy::Update(GameMainScene* gamemain)
 {
-	// 移動処理
+	//// 左右移動処理
+	//if (shoudMoveRight == TRUE)
+	//{
+	//	location.x += speed;
+
+	//	// 画面から右にはみ出さないように
+	//	if (location.x >= SCREEN_WIDTH - radius)
+	//	{
+	//		location.x = SCREEN_WIDTH - radius;
+	//		shoudMoveRight = FALSE;
+	//	}
+	//}
+	//else
+	//{
+	//	location.x -= speed;
+
+	//	// 画面から左にはみ出さないように
+	//	if (location.x <= radius)
+	//	{
+	//		location.x = radius;
+	//		shoudMoveRight = TRUE;
+	//	}
+	//}
+
+	// 弾を発射するタイミング
+	//if (++interval >= 60 && GetRand(100) == 1)
+	//{
+	//	weapon->Shoot(gamemain, location.x, location.y, isEnemy);
+	//	//shoudMove = TRUE;
+	//	interval = 0;
+	//}
 
 	//if (++interval >= 60)
 	//{
 	//	weapon->Shoot(gamemain, location.x, location.y, isEnemy);
 	//	interval = 0;
 	//}
-	
+
 	//if (GetRand(100) == 1)
 	//{
 	//	weapon->Shoot(gamemain, location.x, location.y, isEnemy);
 	//}
 
-	if (++interval >= 60 && GetRand(100) == 1)
-	{
-		weapon->Shoot(gamemain, location.x, location.y, isEnemy);
-		interval = 0;
-	}
 }
 
 // 描画処理
@@ -72,4 +102,9 @@ void Enemy::Hit(int damage)
 int Enemy::GetHp()
 {
 	return hp;
+}
+
+int Enemy::GetPoint()
+{
+	return point;
 }
