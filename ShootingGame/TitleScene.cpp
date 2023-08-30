@@ -21,49 +21,33 @@ TitleScene::~TitleScene()
 // 更新処理
 AbstractScene* TitleScene::Update()
 {
-	// 上下移動
-	if (0.4f < InputControl::TipLeftLStick(STICKL_Y))
+	// カーソル移動
+	if (input_flg == FALSE)
 	{
-
-		if (--menu_number < 0)
+		if (0.4f < InputControl::TipLeftLStick(STICKL_Y))
 		{
-			menu_number = 1;
+			input_flg = TRUE;
+			if (--menu_number < 0)
+			{
+				menu_number = 1;
+			}
+		}
+		else if (InputControl::TipLeftLStick(STICKL_Y) < -0.4f)
+		{
+			input_flg = TRUE;
+			if (++menu_number > 1)
+			{
+				menu_number = 0;
+			}
 		}
 	}
-	else if (InputControl::TipLeftLStick(STICKL_Y) < -0.4f)
+	else if(0.4f > InputControl::TipLeftLStick(STICKL_Y) && InputControl::TipLeftLStick(STICKL_Y) > -0.4f)
 	{
-		if (++menu_number > 1)
-		{
-			menu_number = 0;
-		}
+		input_flg = FALSE;
 	}
-
-	//if (input_flg == FALSE)
-	//{
-	//	if (0.4f < InputControl::TipLeftLStick(STICKL_Y))
-	//	{
-	//		input_flg = TRUE;
-	//		if (--menu_number < 0)
-	//		{
-	//			menu_number = 1;
-	//		}
-	//	}
-	//	else if (InputControl::TipLeftLStick(STICKL_Y) < -0.4f)
-	//	{
-	//		input_flg = TRUE;
-	//		if (++menu_number > 1)
-	//		{
-	//			menu_number = 0;
-	//		}
-	//	}
-	//	else
-	//	{
-	//		input_flg = FALSE;
-	//	}
-	//}
 
 	// カーソル位置の更新
-	menu_y = menu_number * 52;
+	menu_y = menu_number * 100;
 
 	// Aボタンで画面遷移
 	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
@@ -84,19 +68,13 @@ AbstractScene* TitleScene::Update()
 // 描画処理
 void TitleScene::Draw() const
 {
-	// デバッグ
-#if _DEBUG
-	SetFontSize(10);
-	DrawFormatString(50, 0, 0xffffff, "タイトル");
-#endif	//_DEBUG
+	SetFontSize(100);
+	DrawFormatString(350, 150, 0xffffff, "Shooting Game");
 
-	//SetFontSize(100);
-	//DrawFormatString(350, 150, 0xffffff, "Shooting Game");
+	SetFontSize(70);
+	DrawFormatString(550, 400, 0xffffff, "Start");
+	DrawFormatString(550, 500, 0xffffff, "Ranking");
 
-	//SetFontSize(70);
-	//DrawFormatString(550, 400, 0xffffff, "Start");
-	//DrawFormatString(550, 500, 0xffffff, "Ranking");
-
-	//// カーソルの描画
-	//DrawTriangle(240, 300 + menu_y, 260, 315 + menu_y, 240, 330 + menu_y, 0xff0000, TRUE);
+	// カーソルの描画
+	DrawTriangle(500, 410 + menu_y, 530, 430 + menu_y, 500, 450 + menu_y, 0xff0000, TRUE);
 }
