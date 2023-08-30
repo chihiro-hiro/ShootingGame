@@ -17,7 +17,7 @@ GameMainScene::GameMainScene()
 		enemy[i] = nullptr;
 	}
 
-	enemy[0] = new Enemy(100.0f,200.0f);
+	enemy[0] = new Enemy(100.0f,200.0f,3.0f);
 
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
@@ -27,6 +27,10 @@ GameMainScene::GameMainScene()
 	livingEnemies = 1;
 	//livingEnemies = ENEMY_NUM;
 	stageNum = 1;
+	waitTime = 0;
+	isClear = FALSE;
+	timeLimit = 60;
+	fpsCount = 0;
 }
 
 // デストラクタ
@@ -73,31 +77,41 @@ AbstractScene* GameMainScene::Update()
 	// 当たり判定のチェック
 	HitCheck();
 
-	if (InputControl::OnButton(XINPUT_BUTTON_Y) == 1)
+	if (isClear == FALSE)
 	{
-		return new GameOverScene();
+		if (++fpsCount >= 60)
+		{
+			timeLimit--;
+			fpsCount = 0;
+		}
 	}
 
-	if (InputControl::OnButton(XINPUT_BUTTON_X) == 1)
+	if (livingEnemies <= 0)
 	{
-		return new GameClearScene();
+		isClear = TRUE;
+		waitTime++;
 	}
 
-	//if (stageNum > STEGE_MAX && livingEnemies >= 0)
-	//{
-	// // ゲームクリア
-	//	return new GameClearScene();
-	//}
-	//else if (livingEnemies >= 0)
-	//{
-	// 	// ステージクリア
-	//	return new GameClearScene();
-	// stageNum++;
-	// ChangeStage();
-	//}
+	if (waitTime >= 180)
+	{
+		player.SetScore(timeLimit * 2);
+		isClear = FALSE;
+		waitTime = 0;
 
+		if (stageNum >= STEGE_MAX && livingEnemies <= 0)
+		{
+			// ゲームクリア
+			return new GameClearScene();
+		}
+		else if (livingEnemies <= 0)
+		{
+			// ステージクリア
+			stageNum++;
+			ChangeStage();
+		}
+	}
 
-	if (life <= 0)
+	if (life <= 0 || timeLimit <= 0)
 	{
 		// 残機が0
 		return new GameOverScene();
@@ -111,12 +125,7 @@ void GameMainScene::Draw() const
 {
 	// デバッグ
 #if _DEBUG
-	//DrawFormatString(50, 0, color, "ゲームメイン");
-	DrawFormatString(200, 0, 0xffffff, "Y : ゲームオーバー");
-	DrawFormatString(200, 20, 0xffffff, "X : ゲームクリア");
-	DrawFormatString(0, 50, 0xffffff, "LIFE %2d",life);
-	DrawFormatString(300, 50, 0xff0000, "enemys %2d",livingEnemies);
-	DrawFormatString(300, 100, 0xffffff, "SCORE %d",player.GetScore());
+
 #endif	//_DEBUG
 
 	// プレイヤーの描画処理
@@ -139,6 +148,30 @@ void GameMainScene::Draw() const
 			bullet[i]->Draw();
 		}
 	}
+
+	SetFontSize(25);
+	DrawFormatString(0, 20, 0xffffff, "LIFE %2d", life);
+	DrawFormatString(150, 20, 0xffffff, "SCORE %d", player.GetScore());
+	DrawFormatString(0, 50, 0xff0000, "enemys %2d", livingEnemies);
+	SetFontSize(25);
+	DrawFormatString(1200, 50, 0xffffff, "%2d", timeLimit);
+	SetFontSize(20);
+	DrawFormatString(1150, 20, 0xffffff, "Time Limit");
+
+	if (isClear == TRUE)
+	{
+		SetFontSize(100);
+		DrawFormatString(340, 250, 0x00ffff, "STAGE CLEAR");
+		SetFontSize(15);
+		DrawFormatString(800, 400, 0x00ffff, "NEXT STAGE %d", 3 - (waitTime / 60));
+		DrawFormatString(300, 20, 0x00ffff, "+ %d", timeLimit * 2);
+
+		// 破線の描画
+		for (int i = 0; i <= 20; i++)
+		{
+			DrawBox(310 + (30 * i), 370, 330 + (30 * i), 380, 0xffffff, TRUE);
+		}
+	}
 }
 
 // 当たり判定のチェック
@@ -151,8 +184,6 @@ void GameMainScene::HitCheck()
 			// プレイヤーとの当たり判定
 			if (player.CheckCollision(bullet[i]) == true && bullet[i]->CheckEnemyBullet() == true)
 			{
-				//color = 0xff0000;
-
 				// ダメージ処理
 				player.Hit(bullet[i]->GetDamage());
 
@@ -170,8 +201,6 @@ void GameMainScene::HitCheck()
 					//敵との当たり判定
 					if (enemy[j]->CheckCollision(bullet[i]) == true && bullet[i]->CheckEnemyBullet() == false)
 					{
-						//color = 0x0000ff;
-
 						// ダメージ処理
 						enemy[j]->Hit(bullet[i]->GetDamage());
 
@@ -183,6 +212,8 @@ void GameMainScene::HitCheck()
 							player.SetScore(enemy[j]->GetPoint());
 							enemy[j] = nullptr;
 						}
+
+						break;
 					}
 				}
 			}
@@ -205,24 +236,27 @@ void GameMainScene::SpawnBullet(float x, float y, bool is_enemy)
 
 void GameMainScene::ChangeStage()
 {
+	
+	timeLimit = 60;
+
 	switch (stageNum)
 	{
 		case 1:
-			enemy[0] = new Enemy(100.0f, 200.0f);
+			enemy[0] = new Enemy(100.0f, 200.0f, 3.0f);
 			livingEnemies = 1;
 			break;
 		case 2:
-			enemy[0] = new Enemy(50.0f, 150.0f);
-			enemy[1] = new Enemy(100.0f, 200.0f);
-			enemy[2] = new Enemy(150.0f, 250.0f);
+			enemy[0] = new Enemy(50.0f, 150.0f, 3.0f);
+			enemy[1] = new Enemy(100.0f, 200.0f, 4.0f);
+			enemy[2] = new Enemy(150.0f, 250.0f, 5.0f);
 			livingEnemies = 3;
 			break;
 		case 3:
-			enemy[0] = new Enemy(50.0f, 150.0f);
-			enemy[1] = new Enemy(100.0f, 200.0f);
-			enemy[2] = new Enemy(150.0f, 250.0f);
-			enemy[3] = new Enemy(150.0f, 250.0f);
-			enemy[4] = new Enemy(150.0f, 250.0f);
+			enemy[0] = new Enemy(50.0f, 150.0f, 3.0f);
+			enemy[1] = new Enemy(100.0f, 200.0f, 4.0f);
+			enemy[2] = new Enemy(150.0f, 250.0f, 5.0f);
+			enemy[3] = new Enemy(200.0f, 300.0f, 3.0f);
+			enemy[4] = new Enemy(250.0f, 350.0f, 4.0f);
 			livingEnemies = 5;
 			break;
 		default:

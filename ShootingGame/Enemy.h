@@ -13,7 +13,7 @@ private:
 	bool shoudMoveRight;		// 右に移動するか
 
 public:
-	Enemy(float x, float y);					// コンストラクタ
+	Enemy(float x, float y, float set_speed);					// コンストラクタ
 	~Enemy();						// デストラクタ
 	void Update(GameMainScene* gamemain) override;			// 更新処理
 	void Draw() const override;		// 描画処理

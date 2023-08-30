@@ -45,7 +45,7 @@ void Player::Draw() const
 {
 	// デバッグ
 #if _DEBUG
-	DrawFormatString(20, 20, 0xffffff, "hp = %d", hp);
+	//DrawFormatString(20, 20, 0xffffff, "hp = %d", hp);
 #endif	//_DEBUG
 
 	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xffffff, TRUE);

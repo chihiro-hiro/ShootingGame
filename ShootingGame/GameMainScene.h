@@ -18,6 +18,10 @@ private:
 	Bullet* bullet[BULLET_NUM];			// Bulletのポインタ配列
 	int livingEnemies;					// 生きている敵の数
 	int stageNum;						// ステージ数
+	int waitTime;						// ステージ遷移時の待ち時間
+	bool isClear;
+	int timeLimit;						// 制限時間
+	int fpsCount;
 
 public:
 	GameMainScene();					// コンストラクタ

@@ -13,12 +13,12 @@ Bullet::Bullet(float x, float y, bool is_enemy)
 	radius = 10.0f;
 
 	damage = 1;					// ダメージ量
-	speed = 3.0f;				// 速度
+	speed = 10.0f;				// 速度
 	angle = 0.0f;				// 角度
 	acceleration = 3.0f;		// 速度の変化量
 	angulVelocity = 3.0f;		// 角度の変化量
 	isEnemy = is_enemy;
-	color = 0xff0000;
+	color = 0xffff00;
 }
 
 // デストラクタ
