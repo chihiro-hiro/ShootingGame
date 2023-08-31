@@ -29,13 +29,7 @@ GameMainScene::GameMainScene()
 // デストラクタ
 GameMainScene::~GameMainScene()
 {
-	//delete enemy;
-	//delete[] bullet;
 
-	//for (int i = 0; i < BULLET_NUM; i++)
-	//{
-	//	delete[i] bullet;
-	//}
 }
 
 // 更新処理

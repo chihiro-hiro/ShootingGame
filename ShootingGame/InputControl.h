@@ -22,7 +22,6 @@ private:
 	static XINPUT_STATE Input; //パッド
 	static Stick Rstick; //右スティック
 	static Stick Lstick; //左スティック
-	static bool StickFlg;
 public:
 	//パッド情報の更新
 	static void Update()
