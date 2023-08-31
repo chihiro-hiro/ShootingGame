@@ -35,7 +35,7 @@ void Bullet::Update()
 	else
 	{
 		location.y -= speed;
-		color = 0x0fffff;
+		color = 0x00ffff;
 	}
 }
 

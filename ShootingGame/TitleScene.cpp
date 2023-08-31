@@ -3,6 +3,7 @@
 #include "TitleScene.h"
 #include "GameMainScene.h"
 #include "RankingScene.h"
+#include "EndScene.h"
 
 // コンストラクタ
 TitleScene::TitleScene()
@@ -29,13 +30,13 @@ AbstractScene* TitleScene::Update()
 			input_flg = TRUE;
 			if (--menu_number < 0)
 			{
-				menu_number = 1;
+				menu_number = 2;
 			}
 		}
 		else if (InputControl::TipLeftLStick(STICKL_Y) < -0.4f)
 		{
 			input_flg = TRUE;
-			if (++menu_number > 1)
+			if (++menu_number > 2)
 			{
 				menu_number = 0;
 			}
@@ -58,7 +59,11 @@ AbstractScene* TitleScene::Update()
 		}
 		else if (menu_number == 1)
 		{
-			return new RankingScene();
+			//return new RankingScene();
+		}
+		else if (menu_number == 2)
+		{
+			return new EndScene();
 		}
 	}
 	
@@ -74,6 +79,7 @@ void TitleScene::Draw() const
 	SetFontSize(70);
 	DrawFormatString(550, 400, 0xffffff, "Start");
 	DrawFormatString(550, 500, 0xffffff, "Ranking");
+	DrawFormatString(550, 600, 0xffffff, "END");
 
 	// カーソルの描画
 	DrawTriangle(500, 410 + menu_y, 530, 430 + menu_y, 500, 450 + menu_y, 0xff0000, TRUE);

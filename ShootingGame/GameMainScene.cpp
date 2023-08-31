@@ -106,7 +106,6 @@ AbstractScene* GameMainScene::Update()
 
 	if (life <= 0 || timeLimit <= 0)
 	{
-		// Žc‹@‚ª0
 		return new GameOverScene();
 	}
 
