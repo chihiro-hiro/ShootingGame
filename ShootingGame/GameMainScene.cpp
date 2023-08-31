@@ -22,7 +22,7 @@ GameMainScene::GameMainScene()
 	stageNum = 1;
 	waitTime = 0;
 	isClear = FALSE;
-	timeLimit = 60;
+	timeLimit = 20;
 	fpsCount = 0;
 }
 
@@ -223,7 +223,7 @@ void GameMainScene::SpawnBullet(float x, float y, bool is_enemy)
 
 void GameMainScene::ChangeStage()
 {
-	timeLimit = 60;
+	timeLimit = 20;
 
 	switch (stageNum)
 	{
