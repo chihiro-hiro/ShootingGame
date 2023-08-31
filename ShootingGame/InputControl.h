@@ -81,25 +81,4 @@ public:
 
 		return 0;
 	}
-
-	// スティックが傾いた瞬間
-	static bool LeftLStick(short StickL)
-	{
-		if (StickL == STICKL_X)
-		{
-			float ratioL_X = Input.ThumbLX / MAXL_X;
-			StickFlg = TRUE;
-		}
-		else if (StickL == STICKL_Y)
-		{
-			float ratioL_Y = Input.ThumbLY / MAXL_Y;
-			StickFlg = TRUE;
-		}
-		else
-		{
-			StickFlg = FALSE;
-		}
-
-		return StickFlg;
-	}
 };

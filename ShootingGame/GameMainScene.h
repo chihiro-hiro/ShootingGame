@@ -1,5 +1,4 @@
 #pragma once
-//#include "SceneBase.h"
 #include "AbstractScene.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -13,9 +12,9 @@ class GameMainScene : public AbstractScene
 {
 private:
 	Player player;						// Playerのオブジェクト化
-	int life;							// 残機
 	Enemy* enemy[ENEMY_NUM];			// Enemyのポインタ配列
 	Bullet* bullet[BULLET_NUM];			// Bulletのポインタ配列
+	int life;							// 残機
 	int livingEnemies;					// 生きている敵の数
 	int stageNum;						// ステージ数
 	int waitTime;						// ステージ遷移時の待ち時間
@@ -31,5 +30,5 @@ public:
 
 	void HitCheck();					// 当たり判定のチェック
 	void SpawnBullet(float x, float y, bool is_enemy);					// 弾の配列に新しくデータを作成する
-	void ChangeStage();
+	void ChangeStage();					// ステージ遷移
 };

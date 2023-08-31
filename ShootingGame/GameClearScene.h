@@ -3,6 +3,8 @@
 
 class GameClearScene : public AbstractScene
 {
+private:
+	int waitTime;							// 待ち時間
 public:
 	GameClearScene();					// コンストラクタ
 	~GameClearScene();					// デストラクタ

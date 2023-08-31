@@ -22,5 +22,4 @@ public:
 	} RankingData;
 
 	RankingData		Ranking[RANK_MAX];
-
 };

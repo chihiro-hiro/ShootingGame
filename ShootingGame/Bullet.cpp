@@ -8,8 +8,6 @@ Bullet::Bullet(float x, float y, bool is_enemy)
 {
 	location.x = x;
 	location.y = y;
-	//location.x = 200.0f;
-	//location.y = 200.0f;
 	radius = 10.0f;
 
 	damage = 1;					// É_ÉÅÅ[ÉWó 

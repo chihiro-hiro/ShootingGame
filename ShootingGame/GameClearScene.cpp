@@ -7,7 +7,7 @@
 // コンストラクタ
 GameClearScene::GameClearScene()
 {
-
+	waitTime = 0;
 }
 
 // デストラクタ
@@ -19,12 +19,13 @@ GameClearScene::~GameClearScene()
 // 更新処理
 AbstractScene* GameClearScene::Update()
 {
-	// ランキング内だったら
-	//return new InputRankingScene();
-
-	// Aボタンでタイトルへ遷移
-	if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
+	if (waitTime <= 300)
 	{
+		waitTime++;
+	}
+	else if (InputControl::OnButton(XINPUT_BUTTON_A) == 1)
+	{
+		// Aボタンでタイトルへ遷移
 		return new TitleScene();
 	}
 
@@ -34,13 +35,12 @@ AbstractScene* GameClearScene::Update()
 // 描画処理
 void GameClearScene::Draw() const
 {
-#if _DEBUG
-	//DrawFormatString(50, 0, 0xffff00, "ゲームクリア");
-	//DrawFormatString(200, 0, 0xffffff, "A : タイトル");
-#endif	//_DEBUG
-
 	SetFontSize(150);
 	DrawFormatString(320, 250, 0xffff00, "Game Clear");
-	SetFontSize(30);
-	DrawFormatString(550, 600, 0xffffff, "A : タイトル");
+
+	if (waitTime >= 300)
+	{
+		SetFontSize(30);
+		DrawFormatString(550, 600, 0xffffff, "A : タイトル");
+	}
 }

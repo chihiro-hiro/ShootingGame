@@ -8,9 +8,6 @@ private:
 	int score;
 	BulletsSpawner* weapon;
 
-	//デバッグ用
-	int hp;
-
 public:
 	Player();						// コンストラクタ
 	~Player();						// デストラクタ

@@ -15,6 +15,6 @@ protected:
 		float y;
 	};
 
-	Location location;			// ’†SÀ•W
+	Location location;
 	float radius;				// ”¼Œa
 };

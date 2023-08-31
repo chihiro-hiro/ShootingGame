@@ -1,5 +1,4 @@
 #pragma once
-//#include "SceneBase.h"
 #include "AbstractScene.h"
 
 class TitleScene : public AbstractScene

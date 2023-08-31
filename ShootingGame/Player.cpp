@@ -15,9 +15,6 @@ Player::Player()
 
 	score = 0;
 	weapon = new BulletsSpawner();
-	
-	//デバッグ用
-	hp = 100000;
 }
 
 // デストラクタ
@@ -43,19 +40,13 @@ void Player::Update(GameMainScene* gamemain)
 // 描画処理
 void Player::Draw() const
 {
-	// デバッグ
-#if _DEBUG
-	//DrawFormatString(20, 20, 0xffffff, "hp = %d", hp);
-#endif	//_DEBUG
-
 	DrawCircle((int)location.x, (int)location.y, (int)radius, 0xffffff, TRUE);
 }
 
 // ダメージ処理
 void Player::Hit(int damage)
 {
-	//デバッグ用
-	hp -= damage;
+
 }
 
 int Player::GetScore()const

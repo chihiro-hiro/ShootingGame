@@ -13,5 +13,5 @@ protected:
 public:
 	BulletsSpawner();			// コンストラクタ
 	~BulletsSpawner();			// デストラクタ
-	virtual void Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy);		// 引数にゲームメインシーンのポインタ
+	virtual void Shoot(GameMainScene* gamemain, float x, float y, bool is_enemy);
 };

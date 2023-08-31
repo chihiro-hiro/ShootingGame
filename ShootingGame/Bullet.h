@@ -9,7 +9,7 @@ private:
 	float angle;				// 角度
 	float acceleration;			// 速度の変化量
 	float angulVelocity;		// 角度の変化量
-	bool isEnemy;				// 誰の弾か
+	bool isEnemy;				// 誰から発射されたか
 	int color;					// 弾の色
 
 public:

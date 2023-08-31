@@ -30,9 +30,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	Fps fps;
 	
 	// メインループ
-	// ESCで終了
-	// のちにbackボタンに変更
-	while (ProcessMessage() != -1 && sceneBase->Update() != nullptr && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
+	while (ProcessMessage() != -1 && sceneBase->Update() != nullptr)
 	{
 		// 画面の初期化
 		ClearDrawScreen();
@@ -44,7 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		sceneBase->Draw();
 
 		fps.Update();
-		fps.Draw();
+		//fps.Draw();
 
 		// BACKボタンで強制終了
 		if (InputControl::OnButton(XINPUT_BUTTON_BACK))

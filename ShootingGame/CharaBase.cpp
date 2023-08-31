@@ -6,6 +6,7 @@ CharaBase::CharaBase()
 {
 	speed = 5.0f;
 	image = 0;
+	isEnemy = FALSE;
 }
 
 // デストラクタ

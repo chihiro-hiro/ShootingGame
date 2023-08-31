@@ -3,29 +3,22 @@
 #include "GameClearScene.h"
 #include "GameOverScene.h"
 
-#include "InputControl.h"
-
-// デバッグ用
-//int color = 0xffffff;
-
 // コンストラクタ
 GameMainScene::GameMainScene()
 {
-	life = 3;									// 残機
 	for (int i = 0; i < ENEMY_NUM; i++)
 	{
 		enemy[i] = nullptr;
 	}
-
-	enemy[0] = new Enemy(100.0f,200.0f,3.0f);
 
 	for (int i = 0; i < BULLET_NUM; i++)
 	{
 		bullet[i] = nullptr;
 	}
 
+	enemy[0] = new Enemy(100.0f, 200.0f, 3.0f);
+	life = 3;									// 残機
 	livingEnemies = 1;
-	//livingEnemies = ENEMY_NUM;
 	stageNum = 1;
 	waitTime = 0;
 	isClear = FALSE;
@@ -94,7 +87,7 @@ AbstractScene* GameMainScene::Update()
 
 	if (waitTime >= 180)
 	{
-		player.SetScore(timeLimit * 2);
+		player.SetScore(timeLimit * 10);
 		isClear = FALSE;
 		waitTime = 0;
 
@@ -123,11 +116,6 @@ AbstractScene* GameMainScene::Update()
 // 描画処理
 void GameMainScene::Draw() const
 {
-	// デバッグ
-#if _DEBUG
-
-#endif	//_DEBUG
-
 	// プレイヤーの描画処理
 	player.Draw();
 
@@ -164,7 +152,7 @@ void GameMainScene::Draw() const
 		DrawFormatString(340, 250, 0x00ffff, "STAGE CLEAR");
 		SetFontSize(15);
 		DrawFormatString(800, 400, 0x00ffff, "NEXT STAGE %d", 3 - (waitTime / 60));
-		DrawFormatString(300, 20, 0x00ffff, "+ %d", timeLimit * 2);
+		DrawFormatString(300, 20, 0x00ffff, "+ %d", timeLimit * 10);
 
 		// 破線の描画
 		for (int i = 0; i <= 20; i++)
@@ -236,7 +224,6 @@ void GameMainScene::SpawnBullet(float x, float y, bool is_enemy)
 
 void GameMainScene::ChangeStage()
 {
-	
 	timeLimit = 60;
 
 	switch (stageNum)

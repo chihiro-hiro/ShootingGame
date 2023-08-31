@@ -3,6 +3,8 @@
 
 class GameOverScene : public AbstractScene
 {
+private:
+	int waitTime;						// 待ち時間
 public:
 	GameOverScene();					// コンストラクタ
 	~GameOverScene();					// デストラクタ
